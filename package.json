@@ -11,10 +11,10 @@
     "tachyons": "^4.12.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
+    "test": "react-scripts --openssl-legacy-provider test --env=jsdom",
+    "eject": "react-scripts --openssl-legacy-provider eject"
   },
   "browserslist": {
     "production": [
