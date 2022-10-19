@@ -1,5 +1,5 @@
 import React from 'react';
-import Tilt from 'react-tilt';
+import Tilt from 'react-parallax-tilt'; // Instead of react-tilt
 import brain from './brain.png';
 import './Logo.css';
 

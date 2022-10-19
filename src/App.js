@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Particles from 'react-particles-js';
+import Particles from 'react-particles'; // Instead of 'react-particles-js'
+import { loadFull } from 'tsparticles';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Navigation from './components/Navigation/Navigation';
 import Signin from './components/Signin/Signin';
@@ -10,8 +11,21 @@ import Rank from './components/Rank/Rank';
 import './App.css';
  
 const particlesOptions = {
-  //customize this to your liking
+  fullScreen: {
+    enable: true,
+    zIndex: 100
+  },
   particles: {
+    preset: "Links",
+    move: {
+      enable: true,
+    },
+    shape: {
+      type: "square",
+    },
+    links: {
+      enable: true,
+    },
     number: {
       value: 30,
       density: {
@@ -19,6 +33,25 @@ const particlesOptions = {
         value_area: 800
       }
     }
+  },
+  interactivity: {
+        detectsOn: "window",
+        events: {
+          onclick: {
+            enable: true,
+            mode: "push"
+          },
+          onhover: {
+            enable: true,
+            mode: "trail"
+          },
+          resize: true
+        },
+        modes: {
+            push: {
+                particles_nb: 4
+            }
+        },
   }
 }
 
@@ -41,7 +74,14 @@ class App extends Component {
   constructor() {
     super();
     this.state = initialState;
+
   }
+
+  customInit = async (engine) => {
+      ///await loadLinksPreset(engine);
+      await loadFull(engine);
+  }
+  
 
   loadUser = (data) => {
     this.setState({user: {
@@ -124,7 +164,8 @@ class App extends Component {
     return (
       <div className="App">
          <Particles className='particles'
-          params={particlesOptions}
+          options={particlesOptions}
+          init={this.customInit}
         />
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
         { route === 'home'
